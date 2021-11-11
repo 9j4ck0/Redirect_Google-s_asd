@@ -1,1 +1,1 @@
-# Redirect_Google-s_asd
+# Reject_and_Redirect_Google-s_cookie
