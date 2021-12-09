@@ -39,7 +39,7 @@
                     el.scrollIntoView(true);
                     el.click();
                 }
-                else if(el.getAttribute('type') == 'submit' && el.getAttribute('class') == 'button') {
+                else if(el.getAttribute('type') == 'submit' && el.getAttribute('class') == 'basebutton button') {
                     conf = el;
                 }
             });
