@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reject and Redirect Google's cookie
 // @namespace    http//tampermonkey.net/
-// @version      0.1.2
+// @version      0.1.3
 // @description  Reject and Redirect Google's cookie
 // @author       9j3thr0
 // @match        https://*.google.com/*
