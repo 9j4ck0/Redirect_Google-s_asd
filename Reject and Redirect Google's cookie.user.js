@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reject and Redirect Google's cookie
 // @namespace    http//tampermonkey.net/
-// @version      0.1.3
+// @version      0.1.4
 // @description  Reject and Redirect Google's cookie
 // @author       9j3thr0
 // @match        https://*.google.com/*
@@ -14,8 +14,8 @@
 
 (function() {
     'use strict';
-    const bRj = ['Q7N4Oc', 'yUNjVb', 'FXYDXd', 'SHqtNc'];
-    var conf;
+    const bRj = ['Q7N4Oc', 'yUNjVb', 'FXYDXd', 'SHqtNc', 'VkrUPc', 'NHcovd'];
+    var conf = '';
     var count = 0;
     var page = window.location.href.split('?continue=')[1];
     if(new RegExp(/(https?:\/\/consent\.*)/ig).exec(window.location.href) != null) {
@@ -26,7 +26,10 @@
                     el.scrollIntoView(true);
                     el.click();
                 }
-                else if(el.getAttribute('jsname') == 'j6LnYe') {
+                else if(el.getAttribute('jsname') == 'j6LnYe' && conf == '') {
+                    conf = el;
+                }
+                else if(el.getAttribute('jsname') == 'wsVcxe') {
                     conf = el;
                 }
             });
@@ -61,13 +64,27 @@
     }
     else if(new RegExp(/\google.*/ig).exec(window.location.href) != null) {
         if(document.getElementById('CXQnmb') != null) {
-            document.getElementById('VnjCcb').click();
+            if(document.getElementById('VnjCcb') != null) {
+                document.getElementById('VnjCcb').click();
+            }
+            else if(document.getElementById('W0wltc') != null) {
+                document.getElementById('W0wltc').click();
+            }
+            else {
+                document.getElementById('tHlp8d').click();
+            }
         }
     }
     else if(new RegExp(/\youtube.*/ig).exec(window.location.href) != null) {
         setTimeout(function(){
             if(document.getElementById('dialog') != null) {
-                window.location.replace(document.getElementById('dialog').lastElementChild.children[2].lastElementChild.lastElementChild.firstElementChild.firstElementChild.href);
+                if(document.getElementsByTagName("ytd-button-renderer")[9] != null) {
+                    document.getElementsByTagName("ytd-button-renderer")[9].click();
+                }
+                else if(document.getElementsByTagName("ytd-button-renderer")[11].getElementsByTagName('a') != null) {
+                    document.getElementsByTagName("ytd-button-renderer")[11].getElementsByTagName('a')[0].click();
+                }
+                //window.location.replace(document.getElementById('dialog').lastElementChild.children[2].lastElementChild.lastElementChild.firstElementChild.firstElementChild.href);
             }
         },500);
     }
